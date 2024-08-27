@@ -39,10 +39,23 @@ function TopBar({ addBook }) {
       rounded-md "
       >
         {user?.name}
-        {"'s Bookshelf"}
+        {"'s Library"}
       </div>
 
       <div className="flex space-x-4">
+        <button
+          className="bg-[#A4D985] rounded-md border-2 h-11
+        border-black shadow-black-2 flex justify-between space-x-1 items-center p-2
+        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+          onClick={addBook}
+        >
+          <lord-icon
+            src="https://cdn.lordicon.com/zyzoecaw.json"
+            trigger="hover"
+            class="size-7"
+          ></lord-icon>
+          <h1 className="font-medium">Add books</h1>
+        </button>
         <div
           className="bg-beige p-2 h-11 flex items-center space-x-2 shadow-black-2 border-2 border-black 
       rounded-md "
@@ -58,23 +71,10 @@ function TopBar({ addBook }) {
             class="size-6"
           ></lord-icon>
         </div>
-        <button
-          className="bg-[#A4D985] rounded-md border-2 h-11
-        border-black shadow-black-2 flex justify-between space-x-1 items-center p-2
-        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
-          onClick={addBook}
-        >
-          <lord-icon
-            src="https://cdn.lordicon.com/zyzoecaw.json"
-            trigger="hover"
-            class="size-7"
-          ></lord-icon>
-          <h1 className="font-medium">Add books</h1>
-        </button>
       </div>
       <div className="relative">
         <button
-          className="bg-beige rounded-md border-2 size-11
+          className="bg-beige rounded-md border-2 h-11 space-x-1
         border-black shadow-black-2 flex justify-center items-center p-1
         active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
           onClick={() => setDropDown(!dropDown)}
@@ -85,6 +85,7 @@ function TopBar({ addBook }) {
             colors="primary:#121331,secondary:#66a1ee,tertiary:#ffc738"
             class="size-7"
           ></lord-icon>
+          <h2>Profile</h2>
         </button>
         {dropDown && (
           <div className="absolute flex flex-col top-full right-0 mt-2 overflow-hidden rounded w-48 bg-white border-2 border-black shadow-black-2">

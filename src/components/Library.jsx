@@ -51,7 +51,7 @@ function Library({ booksByShelf, status }) {
           <div className="bg-[#BF785E] w-4 rounded-md border-2 border-black shadow-black-2"></div>
           <div
             className={`flex flex-grow flex-col w-full h-full overflow-y-auto scroll-smooth scrollbar-none 
-             ${status !== "C" ? (status === "T" ? "py-1" : "py-3 pb-5") : ""}
+             ${status !== "C" ? (status === "T" ? "pb-2" : "py-3 pb-5") : ""}
               `}
           >
             <MiniTopBar

@@ -85,7 +85,7 @@ const TiptapEditor = ({ notes, setNotes, editNotes }) => {
       {/* Toolbar */}
       {editNotes && (
         <>
-          <div className="flex space-x-1 mb-3  ">
+          <div className="flex space-x-1 mb-3 md:flex-wrap sm:flex-wrap ">
             <div className="relative  size-7">
               <button
                 onClick={() => setOpenHeading(!openHeading)}
@@ -386,7 +386,7 @@ const TiptapEditor = ({ notes, setNotes, editNotes }) => {
       {/* Editor Content */}
       <div
         className={`bg-white relative p-2 ${
-          editNotes ? "h-64" : "h-80"
+          editNotes ? "lg:h-72 md:h-48 sm:h-48" : "lg:h-90 md:h-64 sm:h-64"
         } overflow-auto`}
       >
         <EditorContent editor={editor} />

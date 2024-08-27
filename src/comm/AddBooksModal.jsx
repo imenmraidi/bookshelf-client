@@ -27,14 +27,13 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
   const debouncedFetchResults = debounce(async query => {
     if (query.length > 0) {
       try {
-        const response = await api.get(
-          `/api/book/search/${query}`
-        );
+        const response = await api.get(`/api/book/search/${query}`);
         setResults(response.data);
       } catch (error) {
         toast.error("Something went wrong, please try again later", {
           position: "top-center",
         });
+        console.log(error);
         setResults([]);
       }
     }
@@ -130,10 +129,10 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
   };
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-0 flex items-center justify-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-10 flex items-center justify-center z-50">
       <div
         className="flex flex-col bg-[#F6E4BE] rounded-lg border-2 border-black shadow-black-4 overflow-hidden"
-        style={{ width: "500px", height: "550px" }}
+        style={{ width: "500px", height: "570px" }}
       >
         <div className="flex justify-between items-center flex-none py-3 px-5 border-b-2 border-black bg-[#A4D985] ">
           <h2 className="text-lg font-bold ">Add Books</h2>

@@ -12,20 +12,21 @@ function MiniTopBar({
   const [openAddShelf, setOpenAddShelf] = useState(false);
   return (
     <div
-      className={`flex p-1  ${
+      className={`flex   ${
         status === "C" ? "lg:h-5 md:h-5 sm:h-7" : "lg:h-11 md:h-16 sm:h-16 "
       } 
       ${
         status === "C" ? "justify-center" : "lg:justify-between"
       } sm:flex-col md:flex-col lg:flex-row px-5 w-full sm:justify-center md:justify-center
+      md:py-1 sm:py-1
       ${status === "R" && "mb-2"} `}
     >
       <h3 className="flex  items-center lg:text-xl sm:text-sm md:text-base  font italic">
         {status === "R"
-          ? "My readings"
+          ? "Have read"
           : status === "C"
-          ? "Currently reading"
-          : "To read list"}
+          ? "Reading now"
+          : "To read"}
       </h3>
       {status !== "C" && (
         <div className="flex space-x-3">

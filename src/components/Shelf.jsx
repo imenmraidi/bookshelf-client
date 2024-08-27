@@ -39,6 +39,7 @@ function Shelf({ shelf, status }) {
       name: shelf?.shelf,
       shelfIndex: shelf?.shelfIndex,
     },
+    disabled: true,
   });
   const style = {
     transform: CSS.Transform.toString(transform),

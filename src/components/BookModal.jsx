@@ -63,9 +63,8 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   const updateBook = async updatedFields => {
     try {
-      const { _id, ...updateBook } = book;
       const res = await api.put(`/api/book/update/${book._id}`, {
-        book: { ...updateBook, ...updatedFields },
+        book: { ...updatedFields },
       });
       console.log("Book updated successfully", res.data);
     } catch (error) {
@@ -77,7 +76,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const debouncedUpdateBook = useCallback(
     debounce(updatedFields => {
       updateBook(updatedFields);
-    }, 1000),
+    }, 2000),
     []
   );
 
@@ -92,7 +91,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full cursor-default  bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out select-text ">
+    <div className="fixed top-0 left-0 w-full h-full cursor-auto overflow-auto bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out select-text ">
       <div
         className="flex  bg-none  transform transition-transform duration-400 ease-in-out scale-95 pointer-events-auto "
         style={{ width: "850px", height: "660px" }}
@@ -254,7 +253,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
               ></lord-icon>
             </button>
           </div>
-          <div className="flex px-7 my-2 justify-between w-full h-15">
+          <div className="flex md:flex-col sm:flex-col lg:flex-row px-7 my-2 justify-between w-full h-15">
             <div>
               <label>Started at </label>
               <input
@@ -274,7 +273,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
               />
             </div>
           </div>
-          <div className="flex flex-col p-4 h-100 ">
+          <div className="flex flex-col px-4 py-3 ">
             <div className="flex">
               <h1 className="text-2xl px-3 font-semibold  ">Notes</h1>
               <lord-icon
@@ -289,7 +288,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
               ></lord-icon>
             </div>
             <hr className=" border-gray-500 mx-3" />
-            <div className="h-100 w-full  ">
+            <div className=" h-fit w-full  ">
               <TiptapEditor
                 notes={notes}
                 setNotes={setNotes}
