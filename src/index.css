@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .retro-button {
+    @apply w-full rounded-lg shadow-black-2 active:shadow-none border-black border-2
+    transform active:translate-x-1 active:translate-y-1 transition duration-200;
+  }
+  .input-login {
+    @apply border-2 border-black h-12 w-full sm:w-64 md:w-80 lg:w-96 xl:w-[32rem] p-4 mt-6
+     transform focus:outline-none focus:translate-y-1 focus:scale-105 transition duration-200;
+  }
+  .tool {
+    @apply p-1 size-7 hover:bg-beige rounded border-1 border-gray-300 flex justify-center items-center;
+  }
+  .tool-active {
+    @apply p-1 size-7 border-black border-1 rounded bg-beige flex justify-center items-center;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.scrollbar-none {
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  /* Hide scrollbar for WebKit browsers */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+*::selection {
+  background-color: rgba(217, 217, 217, 0.5); 
+  color: inherit; 
+  text-shadow: none; 
+}
+/* Custom Scrollbar Styles for All Elements */
+* ::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: #f2f2f2;
+  border-radius: 999px;
+  /* border: 1px solid black; */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ffd787;
+  border-radius: 999px;
+  border: 1px solid black;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #ffc95c;
+}
