@@ -52,17 +52,12 @@ function Book({ book, shelf, dragging }) {
       >
         <img src={book.cover} className="h-full w-full rounded-sm shadow-md" />
       </div>
-
-      {openBook &&
-        createPortal(
-          <BookModal
-            book={book}
-            isOpen={openBook}
-            setOpen={setOpenBook}
-            shelf={shelf}
-          />,
-          document.body
-        )}
+      <BookModal
+        book={book}
+        isOpen={openBook}
+        setOpen={setOpenBook}
+        shelf={shelf}
+      />
     </div>
   );
 }

@@ -14,10 +14,14 @@ export const localLogin = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const response = await axios.post("/api/auth/local", data, {
-        withCredentials: true,
-        credentials: "include",
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/local`,
+        data,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
       const user = response.data.user;
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -34,7 +38,7 @@ export const googleLogin = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const response = await axios.post(
-        "/api/auth/google",
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/google`,
         { token: data.access_token },
         {
           withCredentials: true,

@@ -27,9 +27,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   const deleteBook = async () => {
     try {
-      const response = await api.delete(
-        `/api/book/delete/${book?._id}`
-      );
+      const response = await api.delete(`/api/book/delete/${book?._id}`);
       const setBooks =
         book?.status === "R"
           ? setReadBooks
@@ -66,10 +64,10 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const updateBook = async updatedFields => {
     try {
       const { _id, ...updateBook } = book;
-      await api.put(`/api/book/update/${book._id}`, {
+      const res = await api.put(`/api/book/update/${book._id}`, {
         book: { ...updateBook, ...updatedFields },
       });
-      console.log("Book updated successfully");
+      console.log("Book updated successfully", res.data);
     } catch (error) {
       console.error("Error updating book:", error);
     }
@@ -79,7 +77,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const debouncedUpdateBook = useCallback(
     debounce(updatedFields => {
       updateBook(updatedFields);
-    }, 3000),
+    }, 1000),
     []
   );
 
@@ -94,7 +92,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full  bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out select-text ">
+    <div className="fixed top-0 left-0 w-full h-full cursor-default  bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out select-text ">
       <div
         className="flex  bg-none  transform transition-transform duration-400 ease-in-out scale-95 pointer-events-auto "
         style={{ width: "850px", height: "660px" }}
