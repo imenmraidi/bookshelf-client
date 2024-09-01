@@ -18,7 +18,7 @@ function CurrentlyReading() {
   return (
     <div
       className="  flex  flex-col 
-      p-2 overflow-auto lg:w-1/2 md:w-full sm:w-full"
+      p-2 overflow-auto lg:w-1/2 md:w-2/3 sm:w-2/3"
     >
       <SortableContext
         id="C"

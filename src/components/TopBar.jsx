@@ -11,10 +11,12 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { createPortal } from "react-dom";
+import ShareModal from "./ShareModal";
 function TopBar({ addBook }) {
   const { readBooks } = useBooks();
   const [dropDown, setDropDown] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [openSharing, setOpenSharing] = useState(false);
   const api = useAxios();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,12 +36,28 @@ function TopBar({ addBook }) {
   };
   return (
     <div className=" h-16  flex justify-between items-center  p-4 ">
-      <div
-        className="bg-beige p-2 h-11 flex items-center shadow-black-2 border-2 border-black 
+      <div className="flex space-x-4">
+        <div
+          className="bg-beige p-2 h-11 flex items-center shadow-black-2 border-2 border-black 
       rounded-md "
-      >
-        {user?.name}
-        {"'s Library"}
+        >
+          {user?.name}
+          {"'s Library"}
+        </div>
+        <button
+          className=" rounded-md border-2 bg-beige
+        border-black shadow-black-2 flex justify-between space-x-1 items-center 
+        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+          onClick={() => setOpenSharing(true)}
+        >
+          <lord-icon
+            src="https://cdn.lordicon.com/qpvtavng.json"
+            trigger="hover"
+            state="hover-slide"
+            colors="primary:#121331,secondary:#f49cc8,tertiary:#ebe6ef"
+            class="size-10"
+          ></lord-icon>
+        </button>
       </div>
 
       <div className="flex space-x-4">
@@ -74,8 +92,8 @@ function TopBar({ addBook }) {
       </div>
       <div className="relative">
         <button
-          className="bg-beige rounded-md border-2 h-11 space-x-1
-        border-black shadow-black-2 flex justify-center items-center p-1
+          className="bg-beige rounded-md border-2 h-11 space-x-2
+        border-black shadow-black-2 flex justify-center items-center p-2
         active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
           onClick={() => setDropDown(!dropDown)}
         >
@@ -115,6 +133,7 @@ function TopBar({ addBook }) {
         <Profile isOpen={openProfile} setOpen={setOpenProfile} />,
         document.body
       )}
+      <ShareModal isOpen={openSharing} setOpen={setOpenSharing} />
     </div>
   );
 }

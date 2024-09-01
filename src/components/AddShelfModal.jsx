@@ -95,7 +95,7 @@ const AddShelfModal = ({ setOpen, status }) => {
           <div className="flex  justify-between items-center space-x-4">
             <div
               className=" bg-[#FEF9EF] rounded-lg pr-1 pl-1 border-2 w-full h-10
-             border-[#3D3D3D] items-center overflow-hidden"
+             border-[#3D3D3D] items-center overflow-hidden shadow-yellowish-2"
             >
               <input
                 required

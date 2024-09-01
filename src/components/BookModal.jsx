@@ -82,11 +82,13 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   // UseEffect to trigger the update
   useEffect(() => {
-    debouncedUpdateBook({ tag, rating, hide, startedAt, finishedAt, notes });
-    // Cleanup function to cancel the debounce on component unmount
-    return () => {
-      debouncedUpdateBook.cancel();
-    };
+    if (isOpen) {
+      debouncedUpdateBook({ tag, rating, hide, startedAt, finishedAt, notes });
+      // Cleanup function to cancel the debounce on component unmount
+      return () => {
+        debouncedUpdateBook.cancel();
+      };
+    }
   }, [tag, rating, hide, startedAt, finishedAt, notes]);
 
   if (!isOpen) return null;

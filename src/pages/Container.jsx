@@ -234,19 +234,19 @@ function Container() {
         s._id === overShelfId
           ? {
               ...s,
-              books: arrayMove(
+              books: 
+              arrayMove(
                 [
                   ...s.books,
                   {
                     ...activeBook,
                     status: overStatus,
-                    // shelfId: overShelfId,
                   },
                 ],
                 s.books.length,
-                isOverABook
-                  ? over.data.current?.sortable?.index
-                  : s.books.length
+                // isOverABook
+                //   ? over.data.current?.sortable?.index: 
+                  s.books.length
               ),
             }
           : s._id === activeShelfId
