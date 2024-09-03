@@ -16,12 +16,12 @@ function MiniTopBar({
         status === "C" ? "lg:h-5 md:h-5 sm:h-7" : "lg:h-11 md:h-16 sm:h-16 "
       } 
       ${
-        status === "C" ? "justify-center" : "lg:justify-between"
+        status === "C" ? "justify-center items-center" : "lg:justify-between"
       } sm:flex-col md:flex-col lg:flex-row px-5 w-full sm:justify-center md:justify-center
       md:py-1 sm:py-1
       ${status === "R" && "mb-2"} `}
     >
-      <h3 className="flex  items-center lg:text-xl sm:text-sm md:text-base  font italic">
+      <h3 className="flex min-w-fit mr-3 items-center lg:text-xl sm:text-base md:text-lg  font italic">
         {status === "R"
           ? "Have read"
           : status === "C"
@@ -52,7 +52,7 @@ function MiniTopBar({
             onChange={event => {
               setSelectedShelf(event.target.value);
             }}
-            className="flex h-8 bg-[#ffb577] rounded-lg pr-1 pl-1 border-2
+            className="flex w-24 h-8  bg-[#ffb577] rounded-lg pr-1 pl-1 border-2
          border-[#3D3D3D] shadow-grey-2 outline-none"
           >
             <option value="">shelves</option>
