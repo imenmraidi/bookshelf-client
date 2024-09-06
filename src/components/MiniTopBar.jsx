@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AddShelfModal from "./AddShelfModal";
 import { createPortal } from "react-dom";
+import { useBooks } from "../context/booksContext";
+
 function MiniTopBar({
   status,
   shelves,
@@ -9,10 +11,11 @@ function MiniTopBar({
   selectedShelf,
   setSelectedShelf,
 }) {
+  const { sharing } = useBooks();
   const [openAddShelf, setOpenAddShelf] = useState(false);
   return (
     <div
-      className={`flex   ${
+      className={`flex ${
         status === "C" ? "lg:h-5 md:h-5 sm:h-7" : "lg:h-11 md:h-16 sm:h-16 "
       } 
       ${
@@ -40,7 +43,7 @@ function MiniTopBar({
               class="size-7"
             ></lord-icon>
             <input
-              placeholder="Search books..."
+              placeholder="Search..."
               type="text"
               className="outline-none bg-inherit p-1 w-full h-full"
               value={search}
@@ -63,26 +66,28 @@ function MiniTopBar({
                 </option>
               ))}
           </select>
-          <div className="relative  ">
-            <button
-              onClick={() => setOpenAddShelf(!openAddShelf)}
-              className="bg-[#FFD787] rounded-lg border-2 h-8 w-11
+          {!sharing && (
+            <div className="relative  ">
+              <button
+                onClick={() => setOpenAddShelf(!openAddShelf)}
+                className="bg-[#FFD787] rounded-lg border-2 h-8 w-11
          border-[#3D3D3D] shadow-grey-2 flex justify-center items-center p-1
           active:translate-y-0.5 active:translate-x-0.5 active:shadow-none transform transition duration-200"
-            >
-              +
-              <lord-icon
-                src="https://cdn.lordicon.com/eouimtlu.json"
-                trigger="morph"
-                class="size-7"
-              ></lord-icon>
-            </button>
-            {openAddShelf && (
-              <div className="absolute top-full mt-2 -right-2 z-10 p- w-80  ">
-                <AddShelfModal setOpen={setOpenAddShelf} status={status} />
-              </div>
-            )}
-          </div>
+              >
+                +
+                <lord-icon
+                  src="https://cdn.lordicon.com/eouimtlu.json"
+                  trigger="morph"
+                  class="size-7"
+                ></lord-icon>
+              </button>
+              {openAddShelf && (
+                <div className="absolute top-full mt-2 -right-2 z-10 p- w-80  ">
+                  <AddShelfModal setOpen={setOpenAddShelf} status={status} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

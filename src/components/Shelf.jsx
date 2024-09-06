@@ -23,7 +23,8 @@ import { toast } from "react-toastify";
 function Shelf({ shelf, status }) {
   const api = useAxios();
 
-  const { setReadBooks, setCurrentlyReadingBooks, setToReadBooks } = useBooks();
+  const { sharing, setReadBooks, setCurrentlyReadingBooks, setToReadBooks } =
+    useBooks();
   const {
     attributes,
     listeners,
@@ -39,7 +40,7 @@ function Shelf({ shelf, status }) {
       name: shelf?.shelf,
       shelfIndex: shelf?.shelfIndex,
     },
-    disabled: true,
+    disabled: sharing,
   });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -100,7 +101,7 @@ function Shelf({ shelf, status }) {
       <div className="flex flex-col  w-full  px-5 ">
         {shelf && status !== "C" && (
           <div className="flex justify-between ">
-            {!editShelf ? (
+            {!editShelf || sharing ? (
               <h2
                 className="italic font-light cursor-pointer"
                 onClick={() => setEditShelf(true)}
@@ -124,7 +125,7 @@ function Shelf({ shelf, status }) {
                 }}
               />
             )}
-            <div className="flex items-center space-x-1">
+           {!sharing && <div className="flex items-center space-x-1">
               <button
                 className="ring-gray-400 rounded size-5 flex items-center justify-center transform active:scale-90"
                 onClick={() => setOpenDelete(true)}
@@ -143,7 +144,7 @@ function Shelf({ shelf, status }) {
               >
                 <FontAwesomeIcon icon={faBars} color="#999999" />
               </div>
-            </div>
+            </div>}
           </div>
         )}
         <div

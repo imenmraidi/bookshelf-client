@@ -23,7 +23,8 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   const [openDelete, setOpenDelete] = useState(false);
 
-  const { setReadBooks, setCurrentlyReadingBooks, setToReadBooks } = useBooks();
+  const { sharing, setReadBooks, setCurrentlyReadingBooks, setToReadBooks } =
+    useBooks();
 
   const deleteBook = async () => {
     try {
@@ -82,7 +83,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   // UseEffect to trigger the update
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !sharing) {
       debouncedUpdateBook({ tag, rating, hide, startedAt, finishedAt, notes });
       // Cleanup function to cancel the debounce on component unmount
       return () => {
@@ -127,9 +128,9 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                   <p className="text-lg italic">{book.pageCount} pages</p>
                 </div>
                 <div className="mt-5">
-                  <h3 className="text-2xl font-bold mb-2">Description</h3>
+                  <h3 className="text-2xl font-bold mb-2 ">Description</h3>
                   <div className=" max-h-96 overflow-y-auto">
-                    <p className="text-base text-gray-800">
+                    <p className="text-base text-gray-800 p-1 pr-3">
                       {book.description}
                     </p>
                   </div>
@@ -147,9 +148,10 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
             </>
           )}
         </div>
-        <div className="flex flex-col bg-white w-1/2 border-4 border-black rounded-tl-5xl rounded-bl-3xl ">
+        <div className="flex flex-col bg-white w-1/2 border-4 border-black rounded-tl-5xl rounded-bl-3xl overflow-hidden">
           <div className="flex h-15 p-4 w-full space-x-3 justify-end">
             <button
+              disabled={sharing}
               className="text-gray-500 hover:text-black h-7 w-9 border-2 border-black rounded-full  flex justify-center items-center "
               onClick={() => {
                 setHide(!hide);
@@ -201,6 +203,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
             </div>
             <div className="flex ">
               <select
+                disabled={sharing}
                 value={tag}
                 onChange={event => {
                   setTag(event.target.value);
@@ -225,7 +228,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                   stroke="bold"
                   trigger="hover"
                   colors={`primary:#000000,${
-                    starHover
+                    starHover && !sharing
                       ? s <= starHover
                         ? "secondary:#ffc738"
                         : "secondary:#ebe6ef"
@@ -235,30 +238,33 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                       ? "secondary:#ffc738"
                       : "secondary:#ebe6ef"
                   }`}
-                  onClick={() => setRating(s)}
+                  onClick={() => !sharing && setRating(s)}
                   class="size-10 hover:cursor-pointer tranform active:scale-125
                 transform transition duration-200"
                 ></lord-icon>
               ))}
             </div>
-            <button
-              className="flex items-center justify-center transform active:scale-90"
-              onClick={() => setOpenDelete(true)}
-            >
-              <lord-icon
-                src="https://cdn.lordicon.com/xekbkxul.json"
-                trigger="hover"
-                // state="hover-trash"
-                stroke="bold"
-                colors="primary:#121331,secondary:#ee6d66,tertiary:#c67d53,quaternary:#f2e2d9"
-                class="size-9"
-              ></lord-icon>
-            </button>
+            {!sharing && (
+              <button
+                className="flex items-center justify-center transform active:scale-90"
+                onClick={() => setOpenDelete(true)}
+              >
+                <lord-icon
+                  src="https://cdn.lordicon.com/xekbkxul.json"
+                  trigger="hover"
+                  // state="hover-trash"
+                  stroke="bold"
+                  colors="primary:#121331,secondary:#ee6d66,tertiary:#c67d53,quaternary:#f2e2d9"
+                  class="size-9"
+                ></lord-icon>
+              </button>
+            )}
           </div>
-          <div className="flex md:flex-col sm:flex-col lg:flex-row px-7 my-2 justify-between w-full h-15">
+          <div className="flex flex-col md:flex-row sm:flex-col lg:flex-row px-7 my-2 justify-between w-full h-15">
             <div>
               <label>Started at </label>
               <input
+                readOnly={sharing}
                 type="date"
                 className="outline-none bg-beige flex rounded-lg  shadow-black-2 border-black border-2 px-2  "
                 value={startedAt}
@@ -268,6 +274,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
             <div>
               <label>Finished at </label>
               <input
+                readOnly={sharing}
                 type="date"
                 className="outline-none bg-beige flex rounded-lg  shadow-black-2 border-black border-2 px-2  "
                 value={finishedAt}
@@ -275,29 +282,35 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
               />
             </div>
           </div>
-          <div className="flex flex-col px-4 py-3 ">
-            <div className="flex">
-              <h1 className="text-2xl px-3 font-semibold  ">Notes</h1>
-              <lord-icon
-                src="https://cdn.lordicon.com/zfzufhzk.json"
-                trigger="hover"
-                stroke="bold"
-                state="hover-line"
-                colors="primary:#121131,secondary:#eeaa66,tertiary:#fae6d1,quaternary:#f4a09c,quinary:#00000"
-                class="size-7 hover:cursor-pointer tranform active:scale-90
+          {
+            <div className="flex flex-col px-4 py-3 ">
+              <div className="flex">
+                <h1 className="text-2xl px-3 font-semibold  ">Notes</h1>
+                {!sharing && (
+                  <lord-icon
+                    src="https://cdn.lordicon.com/zfzufhzk.json"
+                    trigger="hover"
+                    stroke="bold"
+                    state="hover-line"
+                    colors="primary:#121131,secondary:#eeaa66,tertiary:#fae6d1,quaternary:#f4a09c,quinary:#00000"
+                    class="size-7 hover:cursor-pointer tranform active:scale-90
                 transform transition duration-200 "
-                onClick={() => setEditNotes(!editNotes)}
-              ></lord-icon>
+                    onClick={() => setEditNotes(!editNotes)}
+                  ></lord-icon>
+                )}
+              </div>
+              <hr className=" border-gray-500 mx-3" />
+              <div className=" h-fit w-full  ">
+                <TiptapEditor
+                  hide={hide}
+                  readOnly={sharing}
+                  notes={sharing && hide ? "Notes are hidden" : notes}
+                  setNotes={setNotes}
+                  editNotes={editNotes}
+                />
+              </div>
             </div>
-            <hr className=" border-gray-500 mx-3" />
-            <div className=" h-fit w-full  ">
-              <TiptapEditor
-                notes={notes}
-                setNotes={setNotes}
-                editNotes={editNotes}
-              />
-            </div>
-          </div>
+          }
         </div>
       </div>
       {createPortal(

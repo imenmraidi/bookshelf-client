@@ -121,24 +121,20 @@ function Container() {
         );
         try {
           const { _id: activeBookId, ...book } = activeBook;
-          const response = await api.put(
-            `/api/book/update/${active.id}`,
-            {
-              book: {
-                ...book,
-                index: over.data.current?.sortable?.index,
-                shelfId: overShelfId,
-              },
-              over: {
-                index: active.data.current?.sortable?.index,
-                type: "book",
-                switchShelf:
-                  activeBook.shelfId !== overShelfId
-                    ? activeBook.shelfId
-                    : null,
-              },
-            }
-          );
+          const response = await api.put(`/api/book/update/${active.id}`, {
+            book: {
+              ...book,
+              index: over.data.current?.sortable?.index,
+              shelfId: overShelfId,
+            },
+            over: {
+              index: active.data.current?.sortable?.index,
+              type: "book",
+              switchShelf:
+                activeBook.shelfId !== overShelfId ? activeBook.shelfId : null,
+            },
+          });
+        
           console.log("Book updated successfully", response);
         } catch (error) {
           console.error("Error updating book:", error);
@@ -166,23 +162,18 @@ function Container() {
         );
         try {
           const { _id, ...book } = activeBook;
-          const response = await api.put(
-            `/api/book/update/${activeBook._id}`,
-            {
-              book: {
-                ...book,
-                shelfId: over.id,
-                status: over.data.current?.sortable?.containerId,
-              },
-              over: {
-                type: "shelf",
-                switchShelf:
-                  activeBook.shelfId !== overShelfId
-                    ? activeBook.shelfId
-                    : null,
-              },
-            }
-          );
+          const response = await api.put(`/api/book/update/${activeBook._id}`, {
+            book: {
+              ...book,
+              shelfId: over.id,
+              status: over.data.current?.sortable?.containerId,
+            },
+            over: {
+              type: "shelf",
+              switchShelf:
+                activeBook.shelfId !== overShelfId ? activeBook.shelfId : null,
+            },
+          });
           console.log("Book updated successfully", response);
         } catch (error) {
           console.error("Error updating book:", error);
@@ -234,8 +225,7 @@ function Container() {
         s._id === overShelfId
           ? {
               ...s,
-              books: 
-              arrayMove(
+              books: arrayMove(
                 [
                   ...s.books,
                   {
@@ -245,8 +235,8 @@ function Container() {
                 ],
                 s.books.length,
                 // isOverABook
-                //   ? over.data.current?.sortable?.index: 
-                  s.books.length
+                //   ? over.data.current?.sortable?.index:
+                s.books.length
               ),
             }
           : s._id === activeShelfId

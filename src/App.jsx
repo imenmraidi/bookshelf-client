@@ -11,6 +11,7 @@ import store from "./redux/store.js";
 import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BooksProvider } from "./context/booksContext.jsx";
+import SharedLib from "./pages/SharedLib.jsx";
 const classNames = x => x;
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                   element={<Landing component={<Signup />} />}
                 />
                 <Route path="/" element={<ProtectedRoute />} />
+                <Route path="/shared/" element={< SharedLib/>} />
                 <Route path="*" element={<Navigate to={"/"} />} />
               </Routes>
             </BooksProvider>

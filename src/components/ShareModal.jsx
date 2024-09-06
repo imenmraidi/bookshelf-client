@@ -31,9 +31,8 @@ const ShareModal = ({ isOpen, setOpen }) => {
       });
   };
   if (!isOpen) return null;
-  console.log(isOpen);
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out">
+    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-10 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out">
       <div
         className="flex flex-col bg-[#F6E4BE] rounded-lg border-2 border-black shadow-black-4 overflow-hidden 
           transform transition-transform duration-400 ease-in-out scale-95"

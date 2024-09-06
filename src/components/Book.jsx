@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import { CSS } from "@dnd-kit/utilities";
 
 function Book({ book, shelf, dragging }) {
+  const { sharing } = useBooks();
   const {
     attributes,
     listeners,
@@ -20,6 +21,7 @@ function Book({ book, shelf, dragging }) {
   } = useSortable({
     id: book._id,
     data: { type: "book", book: book, status: book.status },
+    disabled: sharing,
   });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -34,7 +36,8 @@ function Book({ book, shelf, dragging }) {
         style={style}
         {...attributes}
         {...listeners}
-        className="group relative rounded-sm flex-shrink-0 h-20 w-16 bg-beige opacity-30 ring-1 ring-grey  shadow-xl "
+        className="group relative rounded-sm flex-shrink-0 w-16 h-20 lg:h-20 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14
+         bg-beige opacity-40 ring-1 ring-grey  shadow-xl "
       ></div>
     );
   }
@@ -45,7 +48,8 @@ function Book({ book, shelf, dragging }) {
         style={style}
         {...attributes}
         {...listeners}
-        className={` rounded-sm flex-shrink-0 h-20 w-16 bg-beige  shadow-xl cursor-grab active:cursor-grabbing ${
+        className={` rounded-sm flex-shrink-0 w-16 h-20 lg:h-20 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14 bg-beige 
+          hover:scale-105 shadow-xl cursor-grab active:cursor-grabbing ${
           dragging && "cursor-grabbing transform rotate-2"
         } `}
         onClick={() => setOpenBook(true)}

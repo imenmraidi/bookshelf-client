@@ -7,11 +7,9 @@ import TextStyle from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
-import BulletList from "@tiptap/extension-bullet-list";
-import OrderedList from "@tiptap/extension-ordered-list";
+import { useBooks } from "../context/booksContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   faBold,
   faItalic,
@@ -30,11 +28,12 @@ import {
   faTextSlash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const TiptapEditor = ({ notes, setNotes, editNotes }) => {
+const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
   const [openFontColor, setOpenFontColor] = useState(false);
   const [openHeading, setOpenHeading] = useState(false);
   const [openHighlight, setOpenHighlight] = useState(false);
   const [openAlign, setOpenAlign] = useState(false);
+  const { sharing } = useBooks();
 
   const editor = useEditor({
     editable: editNotes ? true : false,

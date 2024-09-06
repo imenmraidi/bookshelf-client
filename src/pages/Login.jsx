@@ -24,7 +24,7 @@ function Login() {
       toast.error(
         action.payload.response.cide === "ERR_NETWORK"
           ? "une erreur s'est prosuite essayez ultérieurement"
-          : action.payload.response.message,
+          : "Unvalid email or password",
         {
           position: "top-right",
         }
