@@ -17,8 +17,8 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const [tag, setTag] = useState(book?.tag);
   const [rating, setRating] = useState(book?.rating);
   const [hide, setHide] = useState(book?.hide);
-  const [startedAt, setStartedAt] = useState(book?.startedAt);
-  const [finishedAt, setFinishedAt] = useState(book?.finishedAt);
+  const [startedAt, setStartedAt] = useState(book?.startedAt|| "");
+  const [finishedAt, setFinishedAt] = useState(book?.finishedAt|| "");
   const [notes, setNotes] = useState(book?.notes);
 
   const [openDelete, setOpenDelete] = useState(false);
