@@ -273,7 +273,7 @@ function Container() {
   const [activeBook, setActiveBook] = useState(null);
 
   return (
-    <div className=" flex flex-grow mt-6 overflow-auto ">
+    <div className=" flex flex-grow mt-6 overflow-auto">
       <DndContext
         collisionDetection={pointerWithin}
         onDragStart={handleDragStart}
@@ -282,7 +282,7 @@ function Container() {
         sensors={sensors}
       >
         <Read />
-        <div className=" h-full w-1/2 flex flex-col  ">
+        <div className=" h-full w-1/2 flex flex-col   ">
           <div className="flex  w-full h-1/3 justify-end ">
             <CurrentlyReading />
           </div>

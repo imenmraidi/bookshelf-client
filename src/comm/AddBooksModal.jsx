@@ -85,6 +85,7 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
         } else {
           shelf = newShelf ? newShelf : selectedShelf;
         }
+        console.log("selectedBooks", selectedBooks);
         const response = await api.post("/api/book/add", {
           userId: user.id,
           books: selectedBooks,
@@ -164,13 +165,21 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
           </button>
         </div>
         <div className="p-5 flex flex-col flex-grow space-y-4 overflow-auto">
-          <input
-            className="outline-none bg-white flex rounded-xl h-10 shadow-black-1 border-black border-2 p-2 "
-            type="text"
-            placeholder="Search..."
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-          />
+          <div className="flex space-x-1 items-center outline-none bg-white  rounded-xl h-10 shadow-black-1 border-black border-2 p-2 ">
+            <lord-icon
+              src="https://cdn.lordicon.com/kkvxgpti.json"
+              trigger="hover"
+              class="size-7"
+            ></lord-icon>
+            <input
+              className="bg-inherit h-full w-full outline-none"
+              type="text"
+              placeholder="Search..."
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+          </div>
+
           {query && (
             <div className=" w-full bg-white  overflow-y-auto rounded-sm ring-1 ring-black scrollbar-none">
               <ul>

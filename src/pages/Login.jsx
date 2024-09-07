@@ -55,6 +55,11 @@ function Login() {
         });
       }
     },
+    onError: () => {
+      toast.error("une erreur s'est prosuite essayez ultérieurement", {
+        position: "top-right",
+      });
+    },
   });
   return (
     <div
@@ -114,15 +119,6 @@ function Login() {
           googleLog();
         }}
       >
-        {loading && (
-          <lord-icon
-            src="https://cdn.lordicon.com/gkryirhd.json"
-            trigger="loop"
-            state="loop-snake-alt"
-            class="size-7 mr-4"
-            colors="primary:#00000"
-          ></lord-icon>
-        )}
         Continue in with Google 🚀
       </button>
     </div>

@@ -172,7 +172,7 @@ function Shelf({ shelf, status }) {
                   No books yet
                 </p>
               </div>
-            )}{" "}
+            )}
           </SortableContext>
         </div>
       </div>

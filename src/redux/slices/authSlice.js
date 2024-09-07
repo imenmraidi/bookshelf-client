@@ -60,7 +60,7 @@ export const googleLogin = createAsyncThunk(
 export const logout = createAsyncThunk(
   "user/logout",
   async (_, { rejectWithValue }) => {
-    const api = axiosAuth();
+    const api = useAxios();
 
     try {
       const response = await api.post("/api/auth/logout");
@@ -83,9 +83,13 @@ export const signup = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const response = await axios.post(`/api/auth/signup`, data, {
-        timeout: 5000,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/signup`,
+        data,
+        {
+          timeout: 5000,
+        }
+      );
       const user = response.data.user;
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(user));

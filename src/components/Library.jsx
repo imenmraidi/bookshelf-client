@@ -51,7 +51,7 @@ function Library({ booksByShelf, status }) {
           <div className="bg-[#BF785E] w-4 rounded-md border-2 border-black shadow-black-2"></div>
           <div
             className={`flex flex-grow flex-col w-full h-full overflow-y-auto scroll-smooth scrollbar-none 
-             ${status === "C" ? "py-2" : status === "T" ? "py-2" : "py-4"}
+             ${status === "C" ? "py-2" : status === "T" ? "py-2" : " py-3"}
               `}
           >
             <MiniTopBar
@@ -76,7 +76,7 @@ function Library({ booksByShelf, status }) {
                 </SortableContext>
               ) : (
                 <div className="h-full w-full">
-                  <div className="w-full flex flex-col justify-center items-center p-4">
+                  <div className="w-full flex flex-col justify-center items-center p-3">
                     <img
                       src={
                         status === "R"

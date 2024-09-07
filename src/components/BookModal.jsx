@@ -17,8 +17,8 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const [tag, setTag] = useState(book?.tag);
   const [rating, setRating] = useState(book?.rating);
   const [hide, setHide] = useState(book?.hide);
-  const [startedAt, setStartedAt] = useState(book?.startedAt|| "");
-  const [finishedAt, setFinishedAt] = useState(book?.finishedAt|| "");
+  const [startedAt, setStartedAt] = useState(book?.startedAt || "");
+  const [finishedAt, setFinishedAt] = useState(book?.finishedAt || "");
   const [notes, setNotes] = useState(book?.notes);
 
   const [openDelete, setOpenDelete] = useState(false);
@@ -121,17 +121,19 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
             <>
               <div className="p-10 h-full w-full ">
                 <div className="flex flex-col space-y-0 ">
-                  <h1 className="text-3xl font-semibold ">{book.title}</h1>
+                  <h1 className="text-3xl font-semibold ">{book?.title}</h1>
                   <h2 className="text-lg italic text-gray-600">
-                    {book.authors.join(", ")} {book.publishedDate}
+                    {book?.authors.join(", ")} {book?.publishedDate}
                   </h2>
-                  <p className="text-lg italic">{book.pageCount} pages</p>
+                  {book?.pageCount > 0 && (
+                    <p className="text-lg italic">{book?.pageCount} pages</p>
+                  )}
                 </div>
                 <div className="mt-5">
                   <h3 className="text-2xl font-bold mb-2 ">Description</h3>
                   <div className=" max-h-96 overflow-y-auto">
                     <p className="text-base text-gray-800 p-1 pr-3">
-                      {book.description}
+                      {book?.description}
                     </p>
                   </div>
                 </div>
@@ -209,7 +211,6 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                   setTag(event.target.value);
                 }}
                 className="flex h-9 bg-[#F79D97] rounded-l-full pr-1 pl-1 border-2 border-r-0 border-black shadow-black-2 outline-none opacity-100"
-
               >
                 <option value="">Tag</option>
                 <option value="finished">Finished</option>

@@ -18,6 +18,7 @@ function TopBar({ addBook }) {
   const [dropDown, setDropDown] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openSharing, setOpenSharing] = useState(false);
+  const [liked, setLiked] = useState(false);
   const api = useAxios();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,9 +43,8 @@ function TopBar({ addBook }) {
           <div
             className="bg-beige p-2 h-11 font-semibold flex items-center shadow-black-2 border-2 border-black 
       rounded-md cursor-pointer"
-            onClick={() => navigate("/")}
           >
-            Bookshelf
+            <a href="http://localhost:5173/">Bookshelf</a>
           </div>
         )}
         {!sharing && (
@@ -161,9 +161,15 @@ function TopBar({ addBook }) {
           className="bg-beige rounded-md border-2 h-11 space-x-2
         border-black shadow-black-2 flex justify-center items-center p-2
         active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+          onClick={() => setLiked(!liked)}
         >
           <lord-icon
             src="https://cdn.lordicon.com/ohfmmfhn.json"
+            colors={
+              liked
+                ? "primary:#121331,secondary:#f28ba8"
+                : "primary:#121331,secondary:#fad3d1"
+            }
             trigger="click"
             state="hover-heartbeat-alt"
             class="size-7"
