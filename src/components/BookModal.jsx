@@ -208,8 +208,8 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                 onChange={event => {
                   setTag(event.target.value);
                 }}
-                className="flex h-9  bg-[#F79D97] rounded-l-full pr-1 pl-1 border-2 border-r-0
-             border-black shadow-black-2 outline-none"
+                className="flex h-9 bg-[#F79D97] rounded-l-full pr-1 pl-1 border-2 border-r-0 border-black shadow-black-2 outline-none opacity-100"
+
               >
                 <option value="">Tag</option>
                 <option value="finished">Finished</option>
