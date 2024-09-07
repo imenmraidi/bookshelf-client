@@ -166,7 +166,7 @@ function Shelf({ shelf, status }) {
                     status === "R" ? shelf1 : status === "C" ? shelf3 : shelf4
                   }
                   alt=""
-                  className={status === "C" ? "h-11 w-40" : "w-48"}
+                  className={status === "C" ? "h-11 w-40" : "h-14 w-48"}
                 />
                 <p className={`italic text-sm ${status === "C" ? "h-3" : ""}`}>
                   No books yet

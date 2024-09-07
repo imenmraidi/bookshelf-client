@@ -53,12 +53,13 @@ export default {
       height: {
         100: "26rem",
         90: "21rem",
+        18: "74px",
       },
       maxHeight: {
         100: "26rem",
       },
       width: {
-        34:"140px",
+        34: "140px",
         39: "162px",
         49: "194px",
       },

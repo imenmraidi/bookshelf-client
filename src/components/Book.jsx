@@ -17,7 +17,6 @@ function Book({ book, shelf, dragging }) {
     transform,
     transition,
     isDragging,
-    isSorting,
   } = useSortable({
     id: book._id,
     data: { type: "book", book: book, status: book.status },
@@ -36,7 +35,7 @@ function Book({ book, shelf, dragging }) {
         style={style}
         {...attributes}
         {...listeners}
-        className="group relative rounded-sm flex-shrink-0 w-16 h-20 lg:h-20 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14
+        className="group relative rounded-sm flex-shrink-0 w-16 h-18 lg:h-18 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14
          bg-beige opacity-40 ring-1 ring-grey  shadow-xl "
       ></div>
     );
@@ -48,7 +47,7 @@ function Book({ book, shelf, dragging }) {
         style={style}
         {...attributes}
         {...listeners}
-        className={` rounded-sm flex-shrink-0 w-16 h-20 lg:h-20 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14 bg-beige 
+        className={` rounded-sm flex-shrink-0 w-16 h-18 lg:h-18 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14 bg-beige 
           hover:scale-105 shadow-xl cursor-grab active:cursor-grabbing ${
           dragging && "cursor-grabbing transform rotate-2"
         } `}

@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import useAxios from "../utils/useAxios";
 import { toast } from "react-toastify";
 import { updateUsername } from "../redux/slices/authSlice";
+import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
 const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
   const api = useAxios();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const [name, setName] = useState(user?.name);
-  const update = async () => {
+  const [newPass, setNewPass] = useState();
+  const [confirmPass, setConfirmPass] = useState();
+  const updateName = async () => {
     if (!name.trim()) {
       toast.warning("Username cannot be empty", {
         position: "top-center",
@@ -16,6 +19,7 @@ const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
       setName(user?.name);
       return;
     }
+    if (name === user.name) return;
 
     try {
       const res = await api.put(`/api/auth/updateUsername/${user.id}`, {
@@ -37,6 +41,29 @@ const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
         position: "top-center",
       });
       console.error("Error updating username:", error);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    if (!newPass) {
+      toast.error("New password cannot be empty.", { position: "top-center" });
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      toast.error("Passwords don't match!", { position: "top-center" });
+      return;
+    }
+
+    try {
+      const response = await api.put(`/api/auth/updatePassword/${user.id}`, {
+        newPass,
+      });
+      toast.success("Password updates successfully", {
+        position: "top-center",
+      });
+    } catch (err) {
+      toast.error("Error updating password.", { position: "top-center" });
     }
   };
 
@@ -72,7 +99,7 @@ const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
             </svg>
           </button>
         </div>
-        <div className="p-5 pb-0 flex flex-col flex-grow ">
+        <div className="p-7 pb-0 flex flex-col flex-grow ">
           <div className="flex flex-col space-y-2">
             <label className="text-xl font-medium">Username</label>
             <div className="flex  justify-between items-center space-x-4">
@@ -86,13 +113,13 @@ const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
               <button
                 className=" h-10 text-grey bg-[#FFD787] font-bold py-2 px-4 rounded-md border-2 border-grey shadow-grey-1 items-center flex
               active:translate-y-0.5 active:translate-x-0.5 active:shadow-none transform transition duration-200"
-                onClick={update}
+                onClick={updateName}
               >
                 Save
               </button>
             </div>
           </div>
-          {/* {!user.isGoogleUser && (
+          {!user.isGoogleUser && (
             <div className="flex flex-col space-y-4 mt-5">
               <label className="text-xl font-medium">
                 Change your password
@@ -102,25 +129,28 @@ const Profile = ({ isOpen, setOpen, hanldeDelete }) => {
                 <input
                   className="outline-none  p-1  bg-[#FEF9EF] rounded-lg px-2 border-2 w-full h-10
              border-[#3D3D3D] items-center overflow-hidden"
-                  type="text"
-                  value={name}
+                  type="password"
+                  value={newPass}
+                  onChange={e => setNewPass(e.target.value)}
                 />
                 <label className="text-base">Confirm password</label>
                 <input
                   className="outline-none  p-1 bg-[#FEF9EF] rounded-lg px-2 border-2 w-full h-10
              border-[#3D3D3D] items-center overflow-hidden"
-                  type="text"
-                  value={name}
+                  type="password"
+                  value={confirmPass}
+                  onChange={e => setConfirmPass(e.target.value)}
                 />
               </div>
               <button
                 className="  text-grey bg-[#FFD787] font-bold py-2 rounded-md border-2 border-grey shadow-grey-1 items-center 
                 flex justify-center active:translate-y-0.5 active:translate-x-0.5 active:shadow-none transform transition duration-200"
+                onClick={handleChangePassword}
               >
                 Save
               </button>
             </div>
-          )} */}
+          )}
           <div className="flex flex-col space-y-2 mt-3">
             {/* <label className="text-xl font-medium">Account</label>
             <h1 className="text-lg text-red-700 cursor-pointer">

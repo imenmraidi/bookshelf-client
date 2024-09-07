@@ -111,7 +111,6 @@ function Container() {
                           : b
                       ),
                     ],
-
                     active.data.current?.sortable?.index,
                     over.data.current?.sortable?.index
                   ),
@@ -134,7 +133,7 @@ function Container() {
                 activeBook.shelfId !== overShelfId ? activeBook.shelfId : null,
             },
           });
-        
+
           console.log("Book updated successfully", response);
         } catch (error) {
           console.error("Error updating book:", error);
@@ -234,9 +233,9 @@ function Container() {
                   },
                 ],
                 s.books.length,
-                // isOverABook
-                //   ? over.data.current?.sortable?.index:
-                s.books.length
+                isOverABook
+                  ? over.data.current?.sortable?.index
+                  : s.books.length
               ),
             }
           : s._id === activeShelfId

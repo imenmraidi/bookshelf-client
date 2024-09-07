@@ -22,7 +22,7 @@ function MiniTopBar({
         status === "C" ? "justify-center items-center" : "lg:justify-between"
       } sm:flex-col md:flex-col lg:flex-row px-5 w-full sm:justify-center md:justify-center
       md:py-1 sm:py-1
-      ${status === "R" && "mb-2"} `}
+     `}
     >
       <h3 className="flex min-w-fit mr-3 items-center lg:text-xl sm:text-base md:text-lg  font italic">
         {status === "R"
