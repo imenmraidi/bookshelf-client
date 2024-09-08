@@ -49,11 +49,15 @@ function Book({ book, shelf, dragging }) {
         {...listeners}
         className={` rounded-sm flex-shrink-0 w-16 h-18 lg:h-18 lg:w-16 md:h-16 md:w-14 sm:h-16 sm:w-14 bg-beige 
           hover:scale-105 shadow-xl cursor-grab active:cursor-grabbing ${
-          dragging && "cursor-grabbing transform rotate-2"
-        } `}
+            dragging && "cursor-grabbing transform rotate-2"
+          } `}
         onClick={() => setOpenBook(true)}
       >
-        <img src={book.cover} className="h-full w-full rounded-sm shadow-md" />
+        <img
+          src={book.cover.replace("http://", "https://")}
+          className="h-full w-full rounded-sm shadow-md"
+          alt="Book Cover"
+        />{" "}
       </div>
       <BookModal
         book={book}
