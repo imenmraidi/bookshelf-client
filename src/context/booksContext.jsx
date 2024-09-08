@@ -17,6 +17,7 @@ export const BooksProvider = ({ children }) => {
   const [sharing, setSharing] = useState(false);
   const [sharedBooks, setSharedBooks] = useState(null);
   const [sharer, setSharer] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { user } = useSelector(state => state.auth);
   const api = useAxios();
@@ -39,14 +40,16 @@ export const BooksProvider = ({ children }) => {
     setToReadBooks(sortedToReadBooks);
   };
   const fetchData = async () => {
+    setLoading(true); // Start loading
     try {
       const response = await api.post("/api/book/booksByShelf", {
         userId: user.id,
       });
-      // console.log("res", response.data);
-      handleSetBooksState(response.data);
+      handleSetBooksState(response.data); // Set the book data
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false); // Stop loading, whether successful or on error
     }
   };
 
@@ -72,6 +75,7 @@ export const BooksProvider = ({ children }) => {
         setSharedBooks,
         sharer,
         setSharer,
+        loading,
       }}
     >
       {children}

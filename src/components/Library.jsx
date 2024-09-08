@@ -10,9 +10,13 @@ import {
   sortableKeyboardCoordinates,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { useBooks } from "../context/booksContext";
+
 function Library({ booksByShelf, status }) {
   const [search, setSearch] = useState("");
   const [selectedShelf, setSelectedShelf] = useState("");
+  const { loading } = useBooks();
+
   const filteredBooks =
     booksByShelf && search
       ? booksByShelf
@@ -45,71 +49,75 @@ function Library({ booksByShelf, status }) {
       : booksByShelf;
 
   return (
-    filteredBooks && (
-      <>
-        <div className="flex p-2 overflow-auto  ">
-          <div className="bg-[#BF785E] w-4 rounded-md border-2 border-black shadow-black-2"></div>
-          <div
-            className={`flex flex-grow flex-col w-full h-full overflow-y-auto scroll-smooth scrollbar-none 
+    <>
+      <div className="flex p-2 overflow-auto  ">
+        <div className="bg-[#BF785E] w-4 rounded-md border-2 border-black shadow-black-2"></div>
+        <div
+          className={`flex flex-grow flex-col w-full h-full overflow-y-auto scroll-smooth scrollbar-none 
              ${status === "C" ? "py-2" : status === "T" ? "py-2" : " py-3"}
               `}
-          >
-            <MiniTopBar
-              status={status}
-              shelves={booksByShelf.map(s => s?.shelf)}
-              search={search}
-              setSearch={setSearch}
-              selectedShelf={selectedShelf}
-              setSelectedShelf={setSelectedShelf}
-            />
-            <div className=" flex flex-grow flex-col w-full h-full py-1 overflow-y-auto scroll-smooth scrollbar-none  ">
-              {filteredBooks && filteredBooks.length > 0 ? (
-                <SortableContext
-                  items={filteredBooks?.map(s => s?._id)}
-                  id={status}
-
-                  // strategy={horizontalListSortingStrategy}
-                >
-                  {filteredBooks.map(s => (
-                    <Shelf status={status} shelf={s} key={s?._id} />
-                  ))}
-                </SortableContext>
-              ) : (
-                <div className="h-full w-full">
-                  <div className="w-full flex flex-col justify-center items-center p-3">
-                    <img
-                      src={
-                        status === "R"
-                          ? shelf1
-                          : status === "C"
-                          ? shelf3
-                          : shelf4
-                      }
-                      alt=""
-                      className="h-12"
-                    />
-                    <p
-                      className={`italic text-sm ${
-                        status === "C" ? "h-3" : ""
-                      }`}
-                    >
-                      {booksByShelf?.length === 0
-                        ? "No shelves yet"
-                        : "No books were found"}
-                    </p>
-                  </div>
-                  <div className="min-h-3 bg-beige border-black border-t-2 border-b-2" />
+        >
+          <MiniTopBar
+            status={status}
+            shelves={booksByShelf.map(s => s?.shelf)}
+            search={search}
+            setSearch={setSearch}
+            selectedShelf={selectedShelf}
+            setSelectedShelf={setSelectedShelf}
+          />
+          <div className=" flex flex-grow flex-col w-full h-full py-1 overflow-y-auto scroll-smooth scrollbar-none  ">
+            {loading === true ? (
+              <div className="h-full w-full">
+                <div className="w-full flex flex-col justify-center items-center p-6">
+                  <lord-icon
+                    src="https://cdn.lordicon.com/gkryirhd.json"
+                    trigger="loop"
+                    state="loop-scale-dynamic"
+                    colors="primary:#a66037"
+                    class="size-11"
+                  ></lord-icon>
                 </div>
-              )}
-            </div>
+                <div className="min-h-3 bg-beige border-black border-t-2 border-b-2" />
+              </div>
+            ) : filteredBooks && filteredBooks.length > 0 ? (
+              <SortableContext
+                items={filteredBooks?.map(s => s?._id)}
+                id={status}
+                // strategy={horizontalListSortingStrategy}
+              >
+                {filteredBooks.map(s => (
+                  <Shelf status={status} shelf={s} key={s?._id} />
+                ))}
+              </SortableContext>
+            ) : (
+              <div className="h-full w-full">
+                <div className="w-full flex flex-col justify-center items-center p-3">
+                  <img
+                    src={
+                      status === "R" ? shelf1 : status === "C" ? shelf3 : shelf4
+                    }
+                    alt=""
+                    className="h-12"
+                  />
+                  <p
+                    className={`italic text-sm ${status === "C" ? "h-3" : ""}`}
+                  >
+                    {booksByShelf?.length === 0
+                      ? "No shelves yet"
+                      : "No books were found"}
+                  </p>
+                </div>
+                <div className="min-h-3 bg-beige border-black border-t-2 border-b-2" />
+              </div>
+            )}
           </div>
-          <div
-            className="bg-[#BF785E] w-4 rounded-md border-2
-         border-black shadow-black-2"
-          ></div>
         </div>
-      </>
-    )
+        <div
+          className="bg-[#BF785E] w-4 rounded-md border-2
+         border-black shadow-black-2"
+        ></div>
+      </div>
+    </>
   );
 }
 
