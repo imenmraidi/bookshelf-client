@@ -102,7 +102,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
           {!bookInfo ? (
             <>
               <img
-                src={book?.cover}
+                src={book?.cover.replace("http://", "https://")}
                 className="w-full h-full"
                 alt="Book cover"
               />

@@ -70,7 +70,7 @@ const ShareModal = ({ isOpen, setOpen }) => {
               <input
                 type="text"
                 readOnly
-                value={`http://localhost:5173/shared?token=${token}`}
+                value={`https://bookshelf-8wpp.onrender.com/shared?token=${token}`}
                 className="w-full h-full outline-none bg-inherit"
               />
             </div>

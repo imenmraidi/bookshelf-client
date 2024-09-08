@@ -54,7 +54,7 @@ function Book({ book, shelf, dragging }) {
         onClick={() => setOpenBook(true)}
       >
         <img
-          src={book.cover.replace("http://", "https://")}
+          src={book?.cover.replace("http://", "https://")}
           className="h-full w-full rounded-sm shadow-md"
           alt="Book Cover"
         />{" "}
