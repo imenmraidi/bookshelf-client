@@ -8,7 +8,6 @@ import { useBooks } from "../context/booksContext";
 
 function Read() {
   const { readBooks } = useBooks();
-  console.log("readBooks", readBooks);
   return (
     <div
       className=" w-1/2 flex flex-col h-full 

@@ -9,8 +9,6 @@ import {
 } from "@dnd-kit/sortable";
 function ToRead() {
   const { toReadBooks } = useBooks();
-  console.log("toread books", toReadBooks);
-
   return (
     <div
       className="  flex flex-col 

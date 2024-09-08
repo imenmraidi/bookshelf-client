@@ -23,7 +23,7 @@ function Container() {
   const { readBooks, setReadBooks, setCurrentlyReadingBooks, setToReadBooks } =
     useBooks();
   const handleDragStart = event => {
-    console.log("drag start", event);
+    // console.log("drag start", event);
     if (event.active.data.current.type === "book") {
       setActiveBook(event.active.data.current.book);
     }
@@ -31,7 +31,7 @@ function Container() {
   };
   const handleDragEnd = async event => {
     const { active, over } = event;
-    console.log("drop end", event);
+    // console.log("drop end", event);
     setActiveBook(null);
     if (active.data.current.type === "shelf") {
       if (!over) return;
@@ -65,7 +65,6 @@ function Container() {
             status,
           }
         );
-        console.log("Shelf updated successfully", response.data);
       } catch (error) {
         console.error("error updating shelf:", error);
         toast.error("Something went wrong when updating shelf", {
@@ -134,7 +133,6 @@ function Container() {
             },
           });
 
-          console.log("Book updated successfully", response);
         } catch (error) {
           console.error("Error updating book:", error);
           toast.error("Something went wrong when updating book", {
@@ -173,7 +171,6 @@ function Container() {
                 activeBook.shelfId !== overShelfId ? activeBook.shelfId : null,
             },
           });
-          console.log("Book updated successfully", response);
         } catch (error) {
           console.error("Error updating book:", error);
           toast.error("Something went wrong when updating book", {
@@ -187,7 +184,7 @@ function Container() {
   };
   const handleDragOver = event => {
     const { active, over } = event;
-    console.log("drag over", event);
+    // console.log("drag over", event);
     if (!over) return;
 
     const isActiveABook = active.data.current?.type === "book";

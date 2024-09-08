@@ -14,7 +14,6 @@ import {
 } from "@dnd-kit/sortable";
 function CurrentlyReading() {
   const { currentlyReadingBooks } = useBooks();
-  console.log("currentlyReadingBooks", currentlyReadingBooks);
   return (
     <div
       className="  flex  flex-col 

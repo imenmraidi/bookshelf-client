@@ -67,7 +67,6 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
       const res = await api.put(`/api/book/update/${book._id}`, {
         book: { ...updatedFields },
       });
-      console.log("Book updated successfully", res.data);
     } catch (error) {
       console.error("Error updating book:", error);
     }

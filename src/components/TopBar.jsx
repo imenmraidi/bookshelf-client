@@ -29,7 +29,6 @@ function TopBar({ addBook }) {
       const response = await api.post("/api/auth/logout");
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      console.log(response);
       dispatch(clearUser());
       navigate("/");
     } catch (err) {

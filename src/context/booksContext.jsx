@@ -20,7 +20,6 @@ export const BooksProvider = ({ children }) => {
 
   const { user } = useSelector(state => state.auth);
   const api = useAxios();
-  console.log(user);
 
   const handleSetBooksState = data => {
     setBooks(data);
@@ -44,7 +43,7 @@ export const BooksProvider = ({ children }) => {
       const response = await api.post("/api/book/booksByShelf", {
         userId: user.id,
       });
-      console.log("res", response.data);
+      // console.log("res", response.data);
       handleSetBooksState(response.data);
     } catch (error) {
       console.log(error);

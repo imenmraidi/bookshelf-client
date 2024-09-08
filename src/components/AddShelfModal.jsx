@@ -21,7 +21,6 @@ const AddShelfModal = ({ setOpen, status }) => {
           status,
         }
       );
-      console.log(response.data);
       const setBooks =
         status === "R"
           ? setReadBooks
