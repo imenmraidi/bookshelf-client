@@ -22,7 +22,7 @@ const ShareModal = ({ isOpen, setOpen }) => {
   }, []);
   const handleCopyClick = () => {
     navigator.clipboard
-      .writeText(`http://localhost:5173/shared?token=${token}`)
+      .writeText(`${window.location.origin}/shared?token=${token}`)
       .then(() => {
         toast.success("Link copied to clipboard", { position: "bottom-left" });
       })
@@ -67,8 +67,11 @@ const ShareModal = ({ isOpen, setOpen }) => {
               className=" bg-[#FEF9EF] rounded-md pr-1 pl-1 border-2 flex-grow h-10
              border-[#3D3D3D] items-center overflow-hidden shadow-orange-2"
             >
-              <input type="text" readOnly value={`http://localhost:5173/shared?token=${token}`}
-              className="w-full h-full outline-none bg-inherit"
+              <input
+                type="text"
+                readOnly
+                value={`http://localhost:5173/shared?token=${token}`}
+                className="w-full h-full outline-none bg-inherit"
               />
             </div>
             <button
