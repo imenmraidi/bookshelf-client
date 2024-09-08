@@ -85,7 +85,6 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
         } else {
           shelf = newShelf ? newShelf : selectedShelf;
         }
-        console.log("selectedBooks", selectedBooks);
         const response = await api.post("/api/book/add", {
           userId: user.id,
           books: selectedBooks,

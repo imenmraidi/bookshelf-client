@@ -1,6 +1,5 @@
 const ConfirmModal = ({ isOpen, setOpen, hanldeDelete }) => {
   if (!isOpen) return null;
-  console.log(isOpen);
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-0 flex items-center justify-center z-50 transform transition-transform duration-400 ease-in-out">
       <div
