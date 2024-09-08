@@ -18,8 +18,8 @@ function Landing({ component }) {
           <h1 className="text-4xl ml-2">Bookshelf</h1>
           <div className="rounded-tl-3xl rounded-bl-3xl rounded-br-3xl bg-bg-2 border-2 border-black shadow-black--2 mt-6 p-6 text-lg">
             <p>
-              Welcome to Bookshelf! Your virtual library where you can organize
-              your books in a very interactive and fun way!
+              Welcome to Bookshelf! Your virtual library where you can easily
+              organize and manage all your books in one place!
             </p>
           </div>
         </div>

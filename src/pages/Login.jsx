@@ -73,19 +73,19 @@ function Login() {
           placeholder="Email"
           type="text"
           {...register("email", { required: true })}
-          className={`input-login bg-[#FFEAB9]  shadow-yellowish-6 focus:shadow-yellowish-4 
+          className={`input-login bg-[#FFEAB9]  shadow-yellowish-4 focus:shadow-yellowish-4 
             ${errors.email ? "text-red-700 border-red-700 border-2" : ""}`}
         />
         <input
           placeholder="Password"
           type="password"
           {...register("password", { required: true })}
-          className={`input-login bg-[#FFEAB9] shadow-orange-6 focus:shadow-orange-4 
+          className={`input-login bg-[#FFEAB9] shadow-orange-4 focus:shadow-orange-4 
           ${errors.password ? "text-red-700 border-red-700 border-2" : ""}`}
         />
         <button
           type="submit"
-          className="bg-[#FEB92E]  border-[#3D3D3D]  shadow-grey-6  text-white  p-2 mt-10
+          className="bg-[#FEB92E]  border-[#3D3D3D]  shadow-grey-4  text-white  p-2 mt-10
       border-2 w-full h-12 max-w-[32rem] transform flex items-center justify-center
       active:shadow-grey-2 active:translate-y-1 active:translate-x-1 transition duration-200"
         >

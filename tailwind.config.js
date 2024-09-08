@@ -12,6 +12,7 @@ export default {
         "grey-8": "8px 8px 0 0 #3D3D3D",
         "black-1": "1px 1px 0 0 black",
         "black-2": "2px 2px 0 0 black",
+        "black-2-b": "0 2px 0 0 black",
         "black--2": " -2px 2px 0 0 black",
         "black-4": "4px 4px 0 0 black",
         "black-6": "6px 6px 0 0 black",

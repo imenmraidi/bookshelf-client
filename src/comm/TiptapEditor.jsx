@@ -33,7 +33,6 @@ const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
   const [openHeading, setOpenHeading] = useState(false);
   const [openHighlight, setOpenHighlight] = useState(false);
   const [openAlign, setOpenAlign] = useState(false);
-  const { sharing } = useBooks();
 
   const editor = useEditor({
     editable: editNotes ? true : false,
@@ -87,7 +86,12 @@ const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
           <div className="flex space-x-1 mb-3 md:flex-wrap sm:flex-wrap ">
             <div className="relative  size-7">
               <button
-                onClick={() => setOpenHeading(!openHeading)}
+                onClick={() => {
+                  setOpenFontColor(false);
+                  setOpenHighlight(false);
+                  setOpenAlign(false);
+                  setOpenHeading(!openHeading);
+                }}
                 className={editor.isActive("heading") ? "tool-active" : "tool"}
               >
                 <FontAwesomeIcon icon={faHeading} />
@@ -189,7 +193,12 @@ const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
             {/* <hr className="border-gray-500  border-l h-7" /> */}
             <div className="relative  size-7">
               <button
-                onClick={() => setOpenAlign(!openAlign)}
+                onClick={() => {
+                  setOpenFontColor(false);
+                  setOpenHeading(false);
+                  setOpenHighlight(false);
+                  setOpenAlign(!openAlign);
+                }}
                 className="tool-active"
               >
                 <FontAwesomeIcon icon={faAlignJustify} />{" "}
@@ -263,6 +272,7 @@ const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
                 onClick={() => {
                   setOpenHeading(false);
                   setOpenHighlight(false);
+                  setOpenAlign(false);
                   setOpenFontColor(!openFontColor);
                 }}
                 className={
@@ -317,7 +327,12 @@ const TiptapEditor = ({ notes, setNotes, editNotes, hide }) => {
             </div>
             <div className="relative  size-7">
               <button
-                onClick={() => setOpenHighlight(prev => !prev)}
+                onClick={() => {
+                  setOpenFontColor(false);
+                  setOpenHeading(false);
+                  setOpenAlign(false);
+                  setOpenHighlight(prev => !prev);
+                }}
                 className={
                   editor.isActive("highlight") ? "tool-active" : "tool"
                 }

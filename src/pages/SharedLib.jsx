@@ -39,7 +39,7 @@ function SharedLib() {
 
   if (!permitVisit)
     return (
-      <div className="flex w-full h-full justify-centeritems-center text-7xl">
+      <div className="flex bg-bg-1 w-screen min-h-screen justify-center items-center text-5xl">
         404 not found{" "}
       </div>
     );

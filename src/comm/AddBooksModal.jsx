@@ -111,6 +111,12 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
           position: "top-center",
         });
         setOpen(false);
+        setQuery("");
+        setSelectedBooks([]);
+        setSelectedShelf("");
+        setStatus("");
+        setNewShelf("");
+        setOpen(false);
       } catch (error) {
         if (error.response.status === 400) {
           toast.error(
@@ -141,12 +147,12 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
           <button
             className="text-gray-500 hover:text-black border-2 border-black rounded-full size-7 flex justify-center items-center bg-white"
             onClick={() => {
-              setOpen(false);
               setQuery("");
               setSelectedBooks([]);
               setSelectedShelf("");
               setStatus("");
               setNewShelf("");
+              setOpen(false);
             }}
           >
             <svg
@@ -278,10 +284,10 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
                     Status
                   </option>
                   <option key="R" value="R">
-                    Read
+                    Have read
                   </option>
                   <option key="C" value="C">
-                    Currently reading
+                    Reading now
                   </option>
                   <option key="T" value="T">
                     To read

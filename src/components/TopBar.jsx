@@ -39,17 +39,16 @@ function TopBar({ addBook }) {
   return (
     <div className=" h-16  flex justify-between items-center  p-4  ">
       <div className="flex space-x-4">
-        {sharing && (
-          <div
-            className="bg-beige p-2 h-11 font-semibold flex items-center shadow-black-2 border-2 border-black 
-      rounded-md cursor-pointer"
-          >
-            <a href="http://localhost:5173/">Bookshelf</a>
-          </div>
-        )}
+        <div
+          className="bg-[#FDB9AE] p-2 h-11 font-semibold flex items-center shadow-black-2-b border-2 border-black 
+      rounded-md cursor-pointer active:shadow-none active:translate-y-0.5  transform transition duration-200"
+        >
+          <a href={import.meta.env.VITE_DOMAIN_URL}>Bookshelf</a>
+        </div>
+
         {!sharing && (
           <div
-            className="bg-beige p-2 h-11 flex items-center shadow-black-2 border-2 border-black 
+            className="bg-beige p-2 h-11 flex items-center shadow-black-2-b border-2 border-black 
       rounded-md "
           >
             {sharing ? sharer : user?.name}
@@ -59,8 +58,8 @@ function TopBar({ addBook }) {
         {!sharing && (
           <button
             className=" rounded-md border-2 bg-beige p-0.5
-        border-black shadow-black-2 flex justify-between space-x-1 items-center 
-        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+        border-black shadow-black-2-b flex justify-between space-x-1 items-center 
+        active:shadow-none active:translate-y-0.5  transform transition duration-200"
             onClick={() => !sharing && setOpenSharing(true)}
           >
             <lord-icon
@@ -77,8 +76,8 @@ function TopBar({ addBook }) {
         {!sharing && (
           <button
             className="bg-[#A4D985] rounded-md border-2 h-11
-        border-black shadow-black-2 flex justify-between space-x-1 items-center p-2
-        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+        border-black shadow-black-2-b flex justify-between space-x-1 items-center p-2
+        active:shadow-none active:translate-y-0.5  transform transition duration-200"
             onClick={addBook}
           >
             <lord-icon
@@ -91,7 +90,7 @@ function TopBar({ addBook }) {
         )}
         {sharing && (
           <div
-            className="bg-beige p-2 h-11 flex items-center shadow-black-2 border-2 border-black 
+            className="bg-beige p-2 h-11 flex items-center shadow-black-2-b border-2 border-black 
       rounded-md "
           >
             {sharing ? sharer : user?.name}
@@ -100,7 +99,7 @@ function TopBar({ addBook }) {
         )}
 
         <div
-          className="bg-beige p-2 h-11 flex items-center space-x-2 shadow-black-2 border-2 border-black 
+          className="bg-[#FFD787] p-2 h-11 flex items-center space-x-2 shadow-black-2-b border-2 border-black 
       rounded-md "
         >
           <p>
@@ -119,8 +118,8 @@ function TopBar({ addBook }) {
         <div className="relative">
           <button
             className="bg-beige rounded-md border-2 h-11 space-x-2
-        border-black shadow-black-2 flex justify-center items-center p-2
-        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+        border-black shadow-black-2-b flex justify-center items-center p-2
+        active:shadow-none active:translate-y-0.5  transform transition duration-200"
             onClick={() => setDropDown(!dropDown)}
           >
             <lord-icon
@@ -132,7 +131,7 @@ function TopBar({ addBook }) {
             <h2>Profile</h2>
           </button>
           {dropDown && (
-            <div className="absolute flex flex-col top-full right-0 mt-2 overflow-hidden rounded w-48 bg-white border-2 border-black shadow-black-2">
+            <div className="absolute flex flex-col top-full right-0 mt-2 overflow-hidden rounded w-48 bg-white border-2 border-black shadow-black-2-b">
               <div
                 className="flex justify-start space-x-2 items-center p-3 m-2 rounded-md  hover:bg-[#e4e4e4] cursor-pointer"
                 onClick={() => {
@@ -159,8 +158,8 @@ function TopBar({ addBook }) {
       {sharing && (
         <button
           className="bg-beige rounded-md border-2 h-11 space-x-2
-        border-black shadow-black-2 flex justify-center items-center p-2
-        active:shadow-none active:translate-y-0.5 active:translate-x-0.5 transform transition duration-200"
+        border-black shadow-black-2-b flex justify-center items-center p-2
+        active:shadow-none active:translate-y-0.5  transform transition duration-200"
           onClick={() => setLiked(!liked)}
         >
           <lord-icon

@@ -131,7 +131,7 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
                 </div>
                 <div className="mt-5">
                   <h3 className="text-2xl font-bold mb-2 ">Description</h3>
-                  <div className=" max-h-96 overflow-y-auto">
+                  <div className=" max-h-100 overflow-y-auto">
                     <p className="text-base text-gray-800 p-1 pr-3">
                       {book?.description}
                     </p>
