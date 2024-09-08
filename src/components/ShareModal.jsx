@@ -18,7 +18,7 @@ const ShareModal = ({ isOpen, setOpen }) => {
         toast.error("Something went wrong. Please try again later");
       }
     };
-    fetchData();
+    if (user) fetchData();
   }, []);
   const handleCopyClick = () => {
     navigator.clipboard

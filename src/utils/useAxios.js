@@ -37,10 +37,11 @@ const useAxios = () => {
             originalRequest._retry = false;
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            alert("session expirée");
+            alert("session expired");
             navigate("/login", {
               replace: true,
             });
+            window.location.reload();
             return Promise.reject(error);
           } else if (error.response.status === 500) {
             alert("une erreur s'est produite");
