@@ -213,7 +213,7 @@ const AddBooksModal = ({ isOpen, setOpen }) => {
                     >
                       <div className="rounded-md flex-shrink-0 h-19 w-14 bg-beige">
                         <img
-                          src={result.cover}
+                          src={result?.cover.replace("http://", "https://")}
                           className="h-full w-full shadow-lg"
                         />
                       </div>
