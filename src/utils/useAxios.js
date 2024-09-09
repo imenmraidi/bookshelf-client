@@ -34,6 +34,9 @@ const useAxios = () => {
           return api(originalRequest);
         } catch (error) {
           if (error.response.status === 403) {
+            console.log(error);
+            console.log(error.response);
+            console.log(error.message);
             originalRequest._retry = false;
             localStorage.removeItem("token");
             localStorage.removeItem("user");
