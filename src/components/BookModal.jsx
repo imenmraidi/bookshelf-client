@@ -23,8 +23,13 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
 
   const [openDelete, setOpenDelete] = useState(false);
 
-  const { sharing, setReadBooks, setCurrentlyReadingBooks, setToReadBooks } =
-    useBooks();
+  const {
+    sharing,
+    toReadBooks,
+    setReadBooks,
+    setCurrentlyReadingBooks,
+    setToReadBooks,
+  } = useBooks();
 
   const deleteBook = async () => {
     try {
@@ -67,26 +72,6 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
       const res = await api.put(`/api/book/update/${book._id}`, {
         book: { ...updatedFields },
       });
-      const setBooks =
-        book?.status === "R"
-          ? setReadBooks
-          : book?.status === "C"
-          ? setCurrentlyReadingBooks
-          : book?.status === "T"
-          ? setToReadBooks
-          : null;
-      setBooks(prevItems =>
-        prevItems.map(s =>
-          s.shelf === shelf.shelf
-            ? {
-                ...s,
-                books: s.books.map(b =>
-                  b._id === book._id ? { ...b, ...updatedFields } : b
-                ),
-              }
-            : s
-        )
-      );
     } catch (error) {
       console.error("Error updating book:", error);
     }
@@ -96,6 +81,31 @@ function BookModal({ isOpen, setOpen, book, shelf }) {
   const debouncedUpdateBook = useCallback(
     debounce(updatedFields => {
       updateBook(updatedFields);
+      const setBooks =
+        book?.status === "R"
+          ? setReadBooks
+          : book?.status === "C"
+          ? setCurrentlyReadingBooks
+          : book?.status === "T"
+          ? setToReadBooks
+          : null;
+      setBooks(prevItems => {
+        return prevItems.map(s => {
+          return s._id === book.shelfId
+            ? {
+                ...s,
+                books: s.books.map(b => {
+                  return b._id === book._id
+                    ? {
+                        ...b,
+                        ...updatedFields,
+                      }
+                    : b;
+                }),
+              }
+            : s;
+        });
+      });
     }, 2000),
     []
   );
