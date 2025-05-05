@@ -48,4 +48,4 @@ The app uses React's Context API for global state management, making it easy to 
 ## Deployment
 The app is deployed on Render.com
 
-## [Go to the server README]([#](https://github.com/imenmraidi/bookshelf-server/edit/main/README.md))
+## [Go to the server README](https://github.com/imenmraidi/bookshelf-server/edit/main/README.md)
